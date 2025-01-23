@@ -3,8 +3,20 @@ services:
 ###> doctrine/doctrine-bundle ###
   database:
     ports:
-      - "5432"
+      - 5432:5432
 ###< doctrine/doctrine-bundle ###
+
+  pgadmin:
+    environment:
+      PGADMIN_DEFAULT_PORT: 5432
+      PGADMIN_DISABLE_POSTFIX: 1
+      PGADMIN_DEFAULT_EMAIL: ${POSTGRES_ADMIN_MAIL:-pgadmin@example.com}
+      PGADMIN_DEFAULT_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
+      PGADMIN_CONFIG_SERVER_MODE: 0
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: 0
+      PGADMIN_CONFIG_CONSOLE_LOG_LEVEL: 10
+    ports:
+      - 8026:80
 
 ###> symfony/mailer ###
   mailer:

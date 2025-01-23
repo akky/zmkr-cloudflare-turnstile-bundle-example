@@ -27,3 +27,12 @@ framework:
 
             # Route your messages to the transports
             # 'App\Message\YourMessage': async
+
+# send registration email immediately in dev (not async)
+when@dev:
+    framework:
+        messenger:
+            transports:
+                sync: 'sync://'
+            routing:
+                Symfony\Component\Mailer\Messenger\SendEmailMessage: sync

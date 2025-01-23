@@ -18,6 +18,14 @@ services:
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/postgresql/data:rw
 ###< doctrine/doctrine-bundle ###
+  pgadmin:
+    image: dpage/pgadmin4:8
+    container_name: pgadmin
+    links:
+      - database
+    environment:
+      DATABASE_HOST: postgres
+    restart: always
 
 volumes:
 ###> doctrine/doctrine-bundle ###
